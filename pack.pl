@@ -1,7 +1,7 @@
 name(lib_atts).
 title('Common atts.pl interface like https://sicstus.sics.se/sicstus/docs/4.0.0/html/sicstus/lib_002datts.html').
 
-version('1.1.115').
+version('1.1.117').
 download('https://github.com/TeamSPoon/lib_atts/release/*.zip').
 
 author( 'Douglas R. Miles', 'logicmoo@gmail.com' ).
