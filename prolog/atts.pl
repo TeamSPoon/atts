@@ -345,3 +345,23 @@ system:goal_expansion(Dict,X):- current_prolog_flag(dict_atts_reader,true),'$cur
 :- set_prolog_flag(atts_declared,auto).
 % :- dict_atts_reader(true).
 
+
+
+%% atts_file_predicates_are_transparent() is det.
+%
+% All Module Predicates Are Transparent.
+:- module_transparent(atts_file_predicates_are_transparent/0).
+atts_file_predicates_are_transparent:-
+ source_location(S,_), prolog_load_context(module,LC),
+ atts_file_predicates_are_transparent(S,LC).
+
+:- module_transparent(atts_file_predicates_are_transparent/2).
+atts_file_predicates_are_transparent(S,_LC):- 
+ forall(source_file(M:H,S),
+ (functor(H,F,A),
+  ignore(((\+ predicate_property(M:H,transparent), module_transparent(M:F/A), 
+  \+ atom_concat('__aux',_,F),debug(modules,'~N:- module_transparent((~q)/~q).~n',[F,A])))))).
+
+:- 
+   atts_file_predicates_are_transparent.
+
